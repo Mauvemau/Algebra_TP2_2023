@@ -63,7 +63,22 @@ public class PyramidGenerator : MonoBehaviour
             double perimeter = 4 * length + 4 * width + 4 * height;
             Debug.Log(box.name + "[" + i + "] Perimetro: " + perimeter);
 
-            double area = 2 * (length * width + length * height + width * height);
+            float amountToSubtract = 0;
+            // Si es el ultimo escalon lo que le restamos queda en 0.
+            if (i + 1 < boxes.Count)
+            {
+                GameObject topBox = boxes[i + 1];
+                // Calculo el area de la cara de abajo del escalon de arriba.
+                amountToSubtract = topBox.transform.localScale.y * topBox.transform.localScale.z;
+            }
+
+            
+            // Las dos caras de ancho + las dos caras de largo + la cara de arriba - la cara de abajo del escalon de arriba.
+            double area =  2 * (width * height) + 2 * (length * height) + (width * length) - amountToSubtract;
+            if (i == 0)
+            { // Si es el primer escalon le sumamos la cara de abajo.
+                area += width * length;
+            }
             Debug.Log(box.name + "[" + i + "] Area: " + area);
 
             double volume = length * width * height;
