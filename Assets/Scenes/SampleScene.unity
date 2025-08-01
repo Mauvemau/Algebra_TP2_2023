@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02009c0999b71419723b6457e9b273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v3Frac: 3
+  v3Frac: 15
   amountSteps: 0
   v1: {x: 0, y: 0, z: 0}
   v2: {x: 0, y: 0, z: 0}

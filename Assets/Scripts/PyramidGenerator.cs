@@ -6,8 +6,8 @@ public class PyramidGenerator : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
-    [Range(2.0f, 20.0f)]
-    private float v3Frac = 3;
+    [Range(6.0f, 100.0f)]
+    private float v3Frac = 15;
     [SerializeField]
     private int amountSteps;
 
@@ -140,8 +140,9 @@ public class PyramidGenerator : MonoBehaviour
         Vector3 safeUp = Mathf.Abs(Vector3.Dot(v1.normalized, Vector3.up)) > 0.99f ? Vector3.forward : Vector3.up;
         
         v1 = randomDir * randomLength;
-        v2 = Vector3.Cross(v1, safeUp).normalized * (v1.magnitude * 1.3f);
-        v3 = Vector3.Cross(v1, v2).normalized * (v1.magnitude / (v3Frac * v1.magnitude));
+        v2 = Vector3.Cross(v1, safeUp).normalized * v1.magnitude;
+        v3 = Vector3.Cross(v1, v2).normalized * (v1.magnitude / v3Frac);
+
 
         amountSteps = Mathf.RoundToInt(v1.magnitude / (2 * v3.magnitude));
         
